@@ -1,6 +1,8 @@
 import process from 'child_process'
 import chalk from "chalk";
 import ora from "ora"; // 加载动画
+import log from 'src/utils/log';
+
 
 const spinner = ora({
   text: "xiaoyang-cli 正在更新......",
@@ -17,9 +19,9 @@ export function update() {
     process.exec('npm install xiaoyang-cli@latest -g', (err) => {
         spinner.stop()
         if(!err) {
-            console.log(chalk.green('更新成功'));
+            log.success(chalk.green('更新成功'));
         } else {
-            console.log(chalk.red(err));
+            log.error(chalk.red(err));
         }
         console.log();
         console.log();

@@ -6,6 +6,7 @@ import { gt } from "lodash";
 import axios, { AxiosResponse } from "axios";
 import { name, version } from "../../package.json";
 import chalk from "chalk";
+import log from "src/utils/log";
 
 export interface TemplateInfo {
   name: string; // 模板名称
@@ -36,7 +37,7 @@ export const templates: Map<string, TemplateInfo> = new Map([
 ]);
 
 export function isOverwrite(fileName: string) {
-  console.warn(`${fileName}文件夹存在`);
+  log.warn(`${fileName}文件夹存在`);
   return select({
     message: "是否覆盖？",
     choices: [
@@ -52,7 +53,7 @@ export const getNpmInfo = async (name: string) => {
   try {
     res = await axios.get(npmUrl);
   } catch (error) {
-    console.error(error);
+    log.error(error as string);
   }
   return res;
 };
@@ -75,15 +76,16 @@ export const checkVersion = async (name: string, version: string) => {
     console.log(`    当前版本为：${chalk.blueBright(version)}`);
     console.log("===========================================");
     console.log();
-    console.log(
+    log.info(
       `可使用：${chalk.yellow("npm install xiaoyang-cli@latest -g")}`
     );
-    console.log(`或者使用：${chalk.yellow("xy-cli update")} 更新`);
+    log.info(`或者使用：${chalk.yellow("xy-cli update")} 更新`);
     console.log();
     console.log();
   }
   return need;
 };
+
 
 export async function create(projectName?: string) {
   // 初始化模板列表
