@@ -1,7 +1,7 @@
 import process from 'child_process'
 import chalk from "chalk";
 import ora from "ora"; // 加载动画
-import log from 'src/utils/log';
+import log from '../utils/log';
 
 
 const spinner = ora({

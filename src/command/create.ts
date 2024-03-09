@@ -1,12 +1,12 @@
 import path from "path";
 import fs from "fs-extra"; // 处理文件
 import { input, select } from "@inquirer/prompts"; // 用于命令行交互
-import { clone } from "src/utils/clone";
+import { clone } from "../utils/clone";
 import { gt } from "lodash";
 import axios, { AxiosResponse } from "axios";
 import { name, version } from "../../package.json";
 import chalk from "chalk";
-import log from "src/utils/log";
+import log from "../utils/log";
 
 export interface TemplateInfo {
   name: string; // 模板名称
